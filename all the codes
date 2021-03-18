@@ -1,0 +1,136 @@
+1st 
+class Solution {
+public:
+    int minMoves2(vector<int>& nums) {
+        sort(nums.begin(),nums.end());
+        int mid= nums.size()/2;
+        int sum=0;
+        for(int i=0;i<nums.size();i++)
+        {
+            sum+= abs(nums[mid]-nums[i]);
+        }
+        return(sum);
+  
+        
+    }
+};
+
+        
+2nd 
+class Solution {
+public:
+    int nthSuperUglyNumber(int n, vector<int>& primes) {
+        int k = primes.size();
+        int* v = new int[n+1];
+        v[0] = 1;
+        int* index = new int[k];
+        for (int i=0; i<k; i++)
+            index[i] = 0;
+        for (int i=0; i<n; i++)
+        {
+            int mink = INT_MAX;
+            for(int j=0; j<k; j++)
+                mink = min(mink,v[index[j]] * primes[j]);
+            for(int j=0; j<k; j++)
+            {
+                if (v[index[j]] * primes[j] == mink)
+                    index[j]++;
+            }
+            v[i+1] = mink; 
+        }
+        return v[n-1];
+    
+        
+    }
+};
+
+        
+3rd
+class Solution {
+public:
+    int numSquares(int n) {
+       
+        
+        vector<int> dp(n+1, 0);
+        for (int i=0; i<n+1; i++) {
+            dp[i] = i;
+        }
+        for (int i=2; i<=n; i++) {
+            for (int j=0; j*j<=i; j++) {
+                dp[i] = min(1+dp[i-j*j], dp[i]);
+            }
+        }
+        
+        return dp[n];
+    }
+};
+4th
+        class Solution {
+public:
+    string fractionToDecimal(long int n, long int d) {
+        
+        
+       map<int,int>mp; 
+        string sh="";
+        
+        if(n<0&&d>0||n>0&&d<0)
+        sh+='-';
+            
+        n=abs(n);
+        d=abs(d);
+        sh+=to_string(n/d);   //-ve cases needed
+        int rem=n%d;
+        
+        if(rem==0)
+            return sh;
+        
+        sh+='.';
+        
+        n=rem;
+        n*=10;
+     
+        
+       int f=0;
+        
+        while(n)
+        { 
+          cout<<n<<endl;
+          if(mp.find(n)!=mp.end())    
+          {  
+              sh.insert(mp[n],"(");
+           f=1;
+              break;
+          }
+            
+            sh+=to_string(n/d);
+            mp[n]=sh.length()-1;
+            n%=d;
+            n*=10;
+        }
+        
+        if(f==0)
+        return sh;
+            else
+            {sh+=")"; 
+               return sh;}    
+        
+  
+    }
+};
+5th
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
+        
+    }
+};
